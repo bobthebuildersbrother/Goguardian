@@ -11,7 +11,6 @@
             const frame = document.getElementById('app-frame');
             frame.style.display = 'block';
 
-            // 1. Capture current theme data
             const styles = getComputedStyle(document.documentElement);
             const accent = styles.getPropertyValue('--accent').trim();
             const bg = styles.getPropertyValue('--bg').trim();
@@ -1245,7 +1244,6 @@
     </div>
 
     <script>
-        // --- DEFAULT TYPEWRITER WORDS (loaded/overridden from localStorage) ---
         const DEFAULT_WORDS = ["GhostLink.", "Knowhere.", "modularity.", "blueeeee.", "anonymity.", "the OASIS.", "freedom.", "the hub ;P.", "liminality.", "simulation."];
         let words = JSON.parse(localStorage.getItem('ghostlink_words')) || DEFAULT_WORDS.slice();
 
@@ -1309,12 +1307,10 @@
             bottom: ['customapps', 'marketplace', 'settings']
         };
 
-        // --- SUPABASE SETUP (exact logic from total-views.html) ---
+        // --- SUPABASE SETUP 
         const SUPABASE_URL = 'https://npvjxyxnmdcncupbwdsx.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wdmp4eXhubWRjbmN1cGJ3ZHN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcyOTU0MjcsImV4cCI6MjA4Mjg3MTQyN30.hZhxWo1iR8O0r66vIeElcsPy1PljtpJ_dEbAOvhrr1Q';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // Increment and display total visits (exact logic from total-views.html)
         async function initTotalVisits() {
             const { data, error } = await supabaseClient.rpc('increment_views');
             const el = document.getElementById('total-visits');
@@ -1322,8 +1318,6 @@
             if (error) { console.error('Views RPC error:', error); el.textContent = ''; return; }
             el.textContent = Number(data).toLocaleString() + ' visits';
         }
-
-        // Track online users via Supabase Realtime Presence
         function initOnlineUsers() {
             const onlineEl = document.getElementById('online-count');
             const sessionKey = 'gl_' + Math.random().toString(36).substr(2, 9);
@@ -1954,8 +1948,6 @@
             document.getElementById('vd-body').innerHTML = body
                 ? parseMarkdown(body)
                 : `<span class="version-detail-empty">No extended description for this commit.</span>`;
-
-            // scroll the versions panel back to top
             document.getElementById('versions-panel').scrollTop = 0;
         }
 
@@ -2040,7 +2032,7 @@
         }
 
         function deleteTypewriterWord(index) {
-            if (words.length <= 1) return; // keep at least one
+            if (words.length <= 1) return;
             words.splice(index, 1);
             saveWords();
             renderWordsEditor();
@@ -2110,7 +2102,7 @@
             const title = document.getElementById('cloak-title').value;
             const icon = document.getElementById('cloak-icon').value;
             if (title) document.title = title;
-            // Remove all existing favicon links to force the browser to refresh
+            // Remove all existing favicon links to force the browser to refresh <--- this is ai's best attempt to fix why it doesnt apply on my chromebook and I can't figure it out 💀
             document.querySelectorAll("link[rel*='icon']").forEach(l => l.remove());
             if (icon) {
                 const link = document.createElement('link');
@@ -2251,7 +2243,6 @@
         function type() {
             const target = document.getElementById("typewriter");
             if(!target) return;
-            // Always use current words array (live from localStorage)
             const currentWords = words.length > 0 ? words : DEFAULT_WORDS;
             wordIdx = wordIdx % currentWords.length;
             const currentWord = currentWords[wordIdx];
@@ -2295,8 +2286,6 @@
                 document.getElementById('bg-blur-input').value = saved.bgBlur || "0";
                 document.getElementById('bg-bright-input').value = saved.bgBright || "100";
                 document.getElementById('font-select').value = saved.font || "'Courier New', monospace";
-
-                // Restore custom font
                 if (saved.fontUrl) {
                     document.getElementById('font-url-input').value = saved.fontUrl;
                     loadCustomFont(true);
@@ -2304,8 +2293,6 @@
                 if (saved.fontCustomFamily) {
                     document.getElementById('font-custom-family').value = saved.fontCustomFamily;
                 }
-
-                // Restore homescreen settings
                 if (saved.initTarget) document.getElementById('init-target-select').value = saved.initTarget;
                 if (saved.clockFormat) document.getElementById('clock-format-select').value = saved.clockFormat;
                 if (saved.dateFormat) document.getElementById('date-format-select').value = saved.dateFormat;
@@ -2369,12 +2356,8 @@
                     bat.addEventListener('levelchange', updateBat); updateBat();
                 });
             }
-
-            // Initialize Supabase features
             initTotalVisits();
             initOnlineUsers();
-
-            // Check for updates
             checkForUpdates();
         };
 
@@ -2395,8 +2378,6 @@
                 theme: theme
             }, '*');
         }
-
-        // Listen for the AI file asking for the theme
         window.addEventListener('message', (event) => {
             if (event.data.type === 'GHOSTLINK_QUERY_THEME') {
                 sendThemeToIframe();
@@ -2452,6 +2433,7 @@
             if (sha) localStorage.setItem('ghostlink_seen_commit', sha);
             overlay.style.display = 'none';
         }
+        //added ts so i can count the update you hoes will never catch meeeeeeeeeeeeeeeeeeeeeeeeeee
     </script>
 </body>
 </html>
