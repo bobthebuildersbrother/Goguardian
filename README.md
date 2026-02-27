@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/virtuan4-max/ghostlinkhub@main/assets/logo.png" width="200" />
 </p>
+
 ---
 
 # ◈ GHOSTLINK (BluePineApple)
