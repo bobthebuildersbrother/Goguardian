@@ -1,189 +1,147 @@
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/virtuan4-max/ghostlinkhub@main/assets/logo.png" width="250" />
+  <img src="https://cdn.jsdelivr.net/gh/virtuan4-max/ghostlinkhub@main/assets/logo.png" width="220" />
 </p>
-<h1 align="center">GHOSTLINK</h1>
 
-"GhostLink is your all‑in‑one cyberpunk personal portal: a portable, customizable, quality‑first web environment built entirely on the client side."
+<h1 align="center">G H O S T L I N K</h1>
+
+<p align="center">
+  <b>Your all-in-one cyberpunk personal portal. Hundreds of games. Built-in AI. Full proxy browser. Zero server deps.</b><br/>
+  <sub>Client-side only · Fully portable · Unrestricted access · No tracking</sub>
+</p>
+
+<p align="center">
+  <a href="https://cdn.jsdelivr.net/gh/virtuan4-max/ghostlinkhub/"><img src="https://img.shields.io/jsdelivr/gh/hm/virtuan4-max/ghostlinkhub?style=flat-square&color=orange&label=jsDelivr" /></a>
+  <a href="https://github.com/virtuan4-max/ghostlinkhub"><img src="https://img.shields.io/github/stars/virtuan4-max/ghostlinkhub?style=flat-square&color=6ecbff" /></a>
+  <a href="https://discord.gg/dKs2sUNUXd"><img src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white" /></a>
+</p>
+
+---
 
 GhostLink is a modular, portable personal-portal framework built entirely with HTML, CSS, and JavaScript. It bundles entertainment, productivity, customization, and privacy tools into a single cohesive styled interface.
 
 ---
 
-## CORE MISSION
-* **Fully Portable:** Easy-to-host website environment that runs anywhere.
-* **Unrestricted Access:** One-click entry to tools, games, AI utilities, and a full proxy browser.
-* **Lightweight:** Client-side only with zero server dependencies.
-* **Quality of Life:** A thematically cohesive and feature-packed web experience.
+## 🎮 Gaming Hub
+
+700+ free browser games and HTML5 ports powered by the [gn-math](https://github.com/gn-math) community game library.
+
+- **Search & Sort** — search by name, sort by popularity, alphabetical, or date added
+- **Favorites** — heart any game to save it; toggle a filter to show only your picks
+- **Fullscreen** — true fullscreen mode for any game
+- **Download** — save any game as a standalone `.html` file to run offline
+- **Ad Cleaned** — ad injections and sidebar spam are stripped before rendering
 
 ---
 
-## GAMING HUB
-Access 600+ free HTML games, web ports, and browser-friendly tools powered by a customized gn-math script.
+## 🤖 AI Terminal
 
-* **Search & Sort:** Search by name, sort by popularity, by name, or by date (ID).
-* **Favorites:** Heart any game to save it; filter the library to only show your favorites.
-* **Download:** Download any game as a standalone `.html` file directly from the viewer.
-* **Fullscreen:** True fullscreen mode for any game.
-* **Ad Cleaned:** Games are stripped of known ad injections and sidebar spam before rendering.
+A fast, local-first AI interface running on the [Groq API](https://groq.com).
 
----
-
-## AI TERMINAL
-A powerful, local-first AI interface utilizing the Groq API for high-speed processing.
-
-* **Privacy First:** API keys are stored in local browser storage; no server required.
-* **Cloud Keys:** Ships with cloud-managed rotating API keys so it works out of the box — no setup needed. Keys rotate every message to distribute load and avoid rate limits.
-* **Custom Key Support:** Optionally supply your own Groq API key in settings for guaranteed priority.
-* **Multimodal:** Supports up to 5 simultaneous image uploads via Base64 encoding for vision tasks.
-* **Vision Model:** Uses `meta-llama/llama-4-scout-17b-16e-instruct` for image understanding tasks, automatically switches to it when images are attached.
-* **Model Selection:** Choose between available Groq models including `groq/compound` and `groq/compound-mini` in the settings panel.
-* **Sleek UI:** Clean, streamlined terminal-style interface with markdown rendering.
-* **Chat History:** Full session management — sessions are saved to localStorage and browseable via the sidebar history panel.
-* **Conversation Context:** Maintains a rolling context window across messages for coherent multi-turn conversations.
-* **High Performance:** Optimized for low token limits and rapid requests.
+- **Works out of the box** — ships with cloud-managed rotating API keys, no setup needed
+- **Custom key support** — supply your own Groq key in Settings for guaranteed priority
+- **Multimodal** — attach up to 5 images at once; auto-switches to the `llama-4-scout` vision model when images are detected
+- **Model selection** — choose from `llama-3.3-70b`, `groq/compound`, `groq/compound-mini`, and more
+- **Session management** — full chat history saved to `localStorage`, browseable via the sidebar history panel
+- **Conversation context** — rolling context window keeps multi-turn conversations coherent
+- **Markdown rendering** — responses render with full formatting support
+- **Privacy first** — keys and history never leave your browser
 
 ---
 
-## WEB PROXY
-A fully integrated client-side proxy browser built directly into the GhostLink dashboard.
+## 🌐 Web Proxy
 
-* **Multi-Tab Browsing:** Full browser experience with tabs, a proper address bar, back/forward/reload navigation, and a loading bar.
-* **New Tab Page:** Custom themed new tab page with a search bar (supports DuckDuckGo, Brave, Bing, Yahoo), a clock, and customizable quick-access shortcuts that persist across sessions.
-* **Proxy Engine:** Powered by [Scramjet](https://github.com/MercuryWorkshop/scramjet) and BareMux with Epoxy transport.
-* **Wisp Servers:** Dynamically fetches a list of Wisp servers from a remote file.
-* **Custom Wisp:** Add your own `wss://` server to the list at any time.
-* **Built-in Ad Blocker:** Service worker intercepts and blocks requests to known ad/tracker domains (Google Ads, DoubleClick, Taboola, Facebook Pixel, etc.) before they even load.
-* **DevTools:** Inject Eruda DevTools into any proxied page with a single button click.
-* **Theme Sync:** The proxy new tab page inherits your current GhostLink theme automatically.
+A full multi-tab proxy browser built right into the dashboard, powered by [Scramjet](https://github.com/MercuryWorkshop/scramjet) + BareMux + Epoxy transport.
 
----
-
-## UI SYSTEM & CUSTOMIZATION
-The heart of GhostLink is its highly responsive and customizable dashboard.
-
-* **Dynamic HUD:** Real-time typewriter splash text, clock, battery status, network ping, and FPS counter on the home screen.
-* **Aesthetic:** Smooth, animated UI with cyberpunk/hacker-terminal styling.
-* **Deep Customization:** Modify accent color, background color, primary/secondary text colors, and fonts on the fly.
-* **Custom Wallpaper:** Set any image URL as a background, or upload one directly. Adjustable blur and brightness.
-* **Font System:** Choose from built-in font presets or load any Google Font (or any CSS stylesheet) by URL with auto-detection of the font family name.
-* **Persistence:** All settings persist across tabs and browser sessions via LocalStorage.
-* **Tab Cloaking:** Preset disguises (Google, Classroom, Blooket, Desmos, Canvas, Khan Academy, etc.) or fully custom title and favicon. Includes an about:blank cloaker.
-* **Custom App System:** Install, edit, or delete your own HTML tools or URL shortcuts.
-  * Built-in App Editor (HTML content, Name, Sidebar Icons).
-  * SVG icon library and sidebar pinning.
-* **App Marketplace:** Pull community apps and games from a remote GitHub repository with one-click installation.
-* **Homescreen Editor:** Edit the words the typewriter cycles through, and configure what the "INITIALIZE SYSTEMS" button navigates to.
-* **Clock & Date Customization:** 12h/24h, with or without seconds, multiple date formats, or hide either entirely.
-* **Customizable Keyboard Shortcuts:** Rebind the home key, games key, and panic key. Add fully custom `Alt + Key` bindings to navigate to any section.
-* **Drag-and-Drop Sidebar:** Reorder your nav items by dragging them wherever you want.
-* **Settings Import/Export:** Export your entire config (apps, shortcuts, settings, nav order, words) to a `.json` file and import it on any device.
-* **Factory Reset:** Nuclear option if you want to start fresh.
-* **Online User Counter + Visit Tracker:** Live user presence powered by Supabase Realtime. Shows how many people are on the site right now and the total visit count.
+- **Multi-tab browsing** — tabs, address bar, back/forward/reload, and a loading bar
+- **New tab page** — themed page with a clock, search bar (DuckDuckGo, Brave, Bing, Yahoo), and persistent quick-access shortcuts
+- **Theme sync** — the new tab page inherits your active GhostLink theme automatically
+- **Built-in ad blocker** — service worker blocks requests to 29+ ad/tracker domains at the network level before they load
+- **Wisp server management** — ships with 4 servers, auto-picks the fastest, add your own `wss://` any time
+- **DevTools** — inject Eruda into any proxied page with one click
 
 ---
 
-## README & VERSION VIEWER
-Click the ◈ logo in the sidebar to open the README modal. It has two tabs:
+## Dashboard & Everything Else
 
-* **README:** Fetches and renders the live README from the repo.
-* **Versions:** Fetches the last 30 commits to `ghostlinksinglefile.html` from GitHub, showing SHA, author, and date. Click any commit to see its full description.
-* **Update Checker:** On load, GhostLink checks the latest commit against the one you last dismissed. If there's a new update, a modal pops up with the changelog. Dismissing it marks it as seen so it won't bug you again.
+GhostLink is also a full-featured personal dashboard with deep customization built in.
 
----
-
-## REPOSITORY TOOLS
-Inside the Settings panel under "Repository Files":
-
-* **Browse Files:** Full file explorer for the GhostLink GitHub repo with breadcrumb navigation and one-click download for any file.
-* **Browse YHS Files:** Grid view of all YHS assets with image preview, lightbox viewer, and download.
-* **Download jsdelivr.html:** Downloads the latest JSDelivr loader file directly.
-* **View Site in 3D:** Loads an experimental 3D view of the site structure.
-
----
-
-## PRIVACY & SECURITY
-* **No Tracking:** Zero server-side data collection (Supabase presence data is anonymous and ephemeral).
-* **Local Storage:** All preferences, apps, shortcuts, and chat history stay in your browser.
-* **Secure Keys:** API keys never leave your client environment.
-* **Ad Blocking:** Service worker blocks known ad and tracker requests at the network level.
+- **Dynamic HUD** — live clock, battery status, FPS counter, ping monitor, and typewriter splash text on the home screen
+- **Theme engine** — change accent color, background, text colors, blur, brightness, and fonts (including any Google Font by URL) on the fly
+- **Tab cloaking** — preset disguises (Google, Classroom, Desmos, etc.) or fully custom title + favicon, with an about:blank cloaker
+- **Custom apps** — install your own HTML tools or URL shortcuts, pick an icon, and pin them to the sidebar
+- **App marketplace** — pull community apps from the remote GitHub repo with one-click install
+- **Keyboard shortcuts** — rebind the home, games, and panic keys; add custom `Alt + Key` bindings for any section
+- **Drag-and-drop sidebar** — reorder nav items however you want
+- **Settings import/export** — export your entire config (apps, shortcuts, theme, nav order) to `.json` and import it on any device
+- **Live presence** — online user counter and total visit tracker powered by Supabase Realtime
+- **README & version viewer** — click ◈ to read the live README or browse the last 30 commits with full changelogs; auto-update checker pops a modal when something new drops
+- **Repo tools** — browse and download any file from the GhostLink GitHub repo, view YHS assets with a lightbox, or load an experimental 3D site visualizer
+- **Factory reset** — nuclear option if you want to start fresh
 
 ---
 
-## DEVELOPER FRIENDLY
-* **Open Source:** Fully transparent and open files.
-* **Extensible:** Easy to modify, theme, or build upon.
-* **Clean Code:** Organized structure for easy navigation.
-* **Universal:** Works anywhere you can run a standard HTML file.
+## Self-Hosting
 
----
-
-## GETTING STARTED
-GhostLink is built for Developers, Students, Privacy Advocates, and Gamers.
-
-1. **Download:** Grab the `ghostlinksinglefile.html` (large file) or `jsdlvrloader.html` (small loader) or any modular components.
-2. **Run:** Run the file anywhere you can run HTML.
-3. **Host:** Upload to GitHub Pages, Netlify, or any static hosting service.
-4. **Customize:** Mess around with site settings, add and install apps, and set up the AI.
-
----
-
-## MODDING & LIGHTWEIGHT DEPLOYMENT
-
-### 1. Customizing the Core UI (`index.html`)
-The `index.html` file acts as the primary shell. You can hardcode your own identity into the system:
-
-* **Hardcoding Presets:** Locate the `const tabPresets` array to add your own school/work disguises that persist even if local storage is cleared.
-* **Default Themes:** Modify the `:root` CSS variables to set a permanent "Signature Theme" (e.g., change `--accent` to `#ff003c` for a Cyberpunk Red look).
-* **Startup Logic:** Edit the `DEFAULT_WORDS` array and `type()` function to change the automated terminal welcome message that appears on boot.
-* **Wisp Servers:** The proxy fetches servers from `proxy/wisps.html` in the remote hub. You can point this to your own list.
-
-### 2. Setting Up Your Remote Repository
-To use the `jsdlvrloader.html` system, you must host your modified files on GitHub:
-
-1. Create a public GitHub repository (e.g., `my-ghostlink-hub`).
-2. Upload your modified `index.html` (or `ghostlinksinglefile.html`).
-3. Create a **Release** or simply push to the `main` branch.
-
-### 3. Implementing the Lightweight Loader
-The `jsdlvrloader.html` file is designed to bypass filters and provide ultra-fast loading by pulling from the JSDelivr Global Edge network.
-
-**Update the loader script with your info:**
+**Option 1 — The loader (recommended):**
+Tiny footprint, always up to date. Create an HTML file with this and host it anywhere:
 ```javascript
-(async () => { 
-    // Replace 'username' and 'repo' with your GitHub details
-    const url = "https://cdn.jsdelivr.net/gh/YOUR_GITHUB_USERNAME/YOUR_REPO@latest/index.html?v=" + Date.now();
-    const response = await fetch(url); 
-    const html = await response.text(); 
-    document.open(); 
-    document.write(html); 
-    document.close(); 
+(async () => {
+    const url = "https://cdn.jsdelivr.net/gh/virtuan4-max/ghostlinkhub@latest/ghostlinksinglefile.html?v=" + Date.now();
+    const response = await fetch(url);
+    const html = await response.text();
+    document.open(); document.write(html); document.close();
 })();
 ```
+This is exactly what `jsdlvrloader.html` already is.
 
-### 4. Run
-Run your loader anywhere you can run HTML!
+**Option 2 — Single file:**
+Download `ghostlinksinglefile.html` and open or host it as-is. Everything is self-contained.
 
----
-
-## FILE STRUCTURE
-```
-index.html          — Main app shell (the whole dashboard)
-ghostlinkai.html    — Standalone AI terminal
-sw.js               — Service worker (Scramjet proxy + ad blocker + Wisp management)
-bareworker.js       — BareMux shared worker (v2.1.7)
-jsdlvrloader.html   — Lightweight JSDelivr loader
+**Option 3 — Fork it:**
+Clone the repo and host `src/index.html` on GitHub Pages, Netlify, Vercel, or any static host. A `vercel.json` is included and pre-configured. To point the loader at your own fork, swap the URL:
+```javascript
+const url = "https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@latest/ghostlinksinglefile.html?v=" + Date.now();
 ```
 
 ---
 
-## CREDITS
-* **Lead Developer:** xRevan (me)
-* **Some AI**
-* **Gaming Scripts:** Built using customized gn-math scripts and community-sourced game ports.
-* **AI Engine:** Powered by Groq API integration.
-* **Proxy Engine:** Scramjet + BareMux + Epoxy Transport by MercuryWorkshop.
+## How It's Built
+
+GhostLink is intentionally zero-dependency on the build side — no bundlers, no frameworks, no `npm install`. The entire thing is vanilla HTML, CSS, and JavaScript structured as a multi-section single-page application with section visibility toggling and an iframe-based app/proxy viewer.
+
+The proxy runs through a registered service worker (`sw.js`) that intercepts fetch events, routes traffic through Scramjet, and kills ad requests before they resolve. BareMux manages the WebSocket transport layer and Epoxy handles the Wisp protocol underneath.
+
+The AI terminal makes direct `fetch` calls to the Groq API from the client. Cloud keys are fetched from a remote vault at startup, shuffled, and rotated per-message. Image attachments are detected and trigger an automatic model swap.
 
 ---
-*Stay Linked. Stay Ghost. Stay GhostLink 👻*
 
-JSDelivr link for ya nerds: https://cdn.jsdelivr.net/gh/virtuan4-max/ghostlinkhub/
+## External Dependencies
+
+| Library | Version | Purpose |
+|---|---|---|
+| [Scramjet](https://github.com/MercuryWorkshop/scramjet) | CDN | Proxy request rewriting |
+| [BareMux](https://github.com/MercuryWorkshop/bare-mux) | `2.1.7` | WebSocket transport layer |
+| [Groq API](https://groq.com) | — | AI inference |
+| [Supabase JS](https://supabase.com) | `2.39.7` | visit counter |
+| [Font Awesome](https://fontawesome.com) | `6.5.1` | Icons |
+| [Eruda](https://github.com/liriliri/eruda) | CDN | In-browser DevTools (proxy) |
+| [jsDelivr](https://www.jsdelivr.com) | — | CDN for loader and assets |
+
+
+---
+
+## Credits
+
+**Lead Developer:** [xRevan](https://github.com/virtuan4-max)
+
+**Gaming Scripts:** Built using customized [gn-math](https://github.com/gn-math) scripts and community-sourced game ports.
+
+**Proxy Engine:** [Scramjet](https://github.com/MercuryWorkshop/scramjet) + BareMux + Epoxy Transport by [MercuryWorkshop](https://github.com/MercuryWorkshop).
+
+**AI Engine:** Powered by [Groq API](https://groq.com).
+
+**Some AI** (Un poco de Gemini y mucho de Claude 🥹)
+
+---
+
+*JSDelivr link for ya nerds 🙄 https://cdn.jsdelivr.net/gh/virtuan4-max/ghostlinkhub/*
