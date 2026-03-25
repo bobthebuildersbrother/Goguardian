@@ -7161,10 +7161,99 @@
 
         // --- GAMES LOGIC ---
         function cleanHTML(html) {
+            // ── Phase 1: Targeted DOM junk removal (ad divs, sidebarad CSS) ──
             html = html.replace(/#sidebarad1\s*,\s*\n?#sidebarad2[\s\S]*?\.sidebar-frame\s*\{[\s\S]*?\}/g, '');
             html = html.replace(/<div\s+id=["']sidebarad[12]["'][^>]*>[\s\S]*?<\/div>\s*(<\/div>)?/g, '');
-            html = html.replace(/<script>\s*\(function\(_0x[a-f0-9]+[\s\S]*?sidebarad[\s\S]*?<\/script>/g, '');
             html = html.replace(/<style>[^<]*#sidebarad[\s\S]*?<\/style>/g, '');
+
+            // ── Phase 2: Universal obfuscated <script> removal ──
+            // Extracts every <script> block, scores it for obfuscation signals,
+            // and drops it if the score crosses the threshold.
+            html = html.replace(/<script(\s[^>]*)?>[\s\S]*?<\/script>/gi, (fullTag) => {
+                // Always keep external scripts (src="…") — they are not inline obfuscation
+                if (/\ssrc\s*=/i.test(fullTag)) return fullTag;
+
+                // Pull just the body text between the tags
+                const body = fullTag.replace(/<script[^>]*>/i, '').replace(/<\/script>/i, '');
+
+                let score = 0;
+
+                // ── Hard patterns: one match = instant removal ──
+                const hardPatterns = [
+                    // _0x hex-variable names from javascript-obfuscator / obfuscator.io
+                    /_0x[a-f0-9]{3,}\s*[\[=(,;]/i,
+                    // eval( wrapping a decoded string
+                    /eval\s*\(\s*(atob|unescape|decodeURI|String\.fromCharCode)\s*\(/i,
+                    // Function constructor as eval surrogate  e.g. Function("return …")()
+                    /new\s+Function\s*\(\s*["'`][^"'`]{30,}/,
+                    // p,a,c,k,e,r packer signature
+                    /eval\s*\(\s*function\s*\(\s*p\s*,\s*a\s*,\s*c\s*,\s*k\s*,\s*e\s*,\s*[rd]\s*\)/,
+                    // JSFuck / JJEncode: heavy use of []!+ symbols
+                    /(\[\]|\!\[\])\s*\+\s*(\[\]|\!\[\])\s*\+\s*(\[\]|\!\[\])/,
+                    // Aaencode / smiley obfuscation
+                    /ﾟωﾟ|ﾟΘﾟ|ﾟｰﾟ/,
+                    // Hex-encoded string property access  obj['\x61\x74\x6f\x62']
+                    /\[['"`](?:\\x[0-9a-f]{2}){3,}['"`]\]/i,
+                    // atob + immediate eval pipeline
+                    /\batob\s*\([^)]*\)\s*[,;)]\s*(eval|Function)\b/i,
+                ];
+
+                for (const pat of hardPatterns) {
+                    if (pat.test(body)) return ''; // instant strip
+                }
+
+                // ── Soft signals: accumulate a score ──
+
+                // _0x hex variable references anywhere (softer — needs more signals to confirm)
+                const hexVarMatches = (body.match(/_0x[a-f0-9]{3,}/gi) || []).length;
+                score += Math.min(hexVarMatches * 3, 30);
+
+                // Hex escape sequences  \x61\x74
+                const hexEscapes = (body.match(/\\x[0-9a-f]{2}/gi) || []).length;
+                score += Math.min(hexEscapes * 2, 20);
+
+                // Unicode escapes  \u0041
+                const unicodeEscapes = (body.match(/\\u[0-9a-f]{4}/gi) || []).length;
+                score += Math.min(unicodeEscapes * 2, 20);
+
+                // String.fromCharCode usage
+                if (/String\s*\.\s*fromCharCode\s*\(/.test(body)) score += 15;
+
+                // Bare atob( or btoa( — common in decode pipelines
+                if (/\batob\s*\(/.test(body)) score += 10;
+                if (/\bbtoa\s*\(/.test(body)) score += 5;
+
+                // unescape( — old-school obfuscation
+                if (/\bunescape\s*\(/.test(body)) score += 10;
+
+                // Bare eval( without decode wrapper (still suspicious)
+                if (/\beval\s*\(/.test(body)) score += 15;
+
+                // Very long single tokens (minified/packed source, long encoded strings)
+                const longTokens = (body.match(/[^\s,;(){}\[\]"'`]{200,}/g) || []).length;
+                score += longTokens * 8;
+
+                // Long base64-looking strings  (A-Za-z0-9+/=  run of 60+ chars)
+                const b64Runs = (body.match(/[A-Za-z0-9+/=]{60,}/g) || []).length;
+                score += b64Runs * 5;
+
+                // Dense comma-separated number arrays (common in charcode obfuscation)
+                const numArrays = (body.match(/(?:\d+\s*,\s*){10,}\d+/g) || []).length;
+                score += numArrays * 8;
+
+                // High ratio of non-alphanumeric characters (symbol soup)
+                const nonAlpha = (body.match(/[^a-zA-Z0-9\s]/g) || []).length;
+                const ratio = body.length > 0 ? nonAlpha / body.length : 0;
+                if (ratio > 0.6 && body.length > 200) score += 20;
+
+                // Obfuscated array-rotation / self-defence tricks
+                if (/\bsetInterval\s*\(.*\btoString\b/s.test(body)) score += 10;
+                if (/parseInt\s*\([^)]+\)\s*!==?\s*parseInt\s*\(/.test(body)) score += 10;
+
+                // Strip if total score is high enough
+                return score >= 25 ? '' : fullTag;
+            });
+
             return html;
         }
 
