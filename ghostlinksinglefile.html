@@ -7266,14 +7266,16 @@
         let gamesLoaded = false;
 
         const zonesurls = [
-            "https://cdn.jsdelivr.net/%67%68/%67%6e%2d%6d%61%74%68/%61%73%73%65%74%73@%6d%61%69%6e/%7a%6f%6e%65%73%2e%6a%73%6f%6e",
-            "https://cdn.jsdelivr.net/gh/gn-math/assets@latest/zones.json",
-            "https://cdn.jsdelivr.net/gh/gn-math/assets@master/zones.json",
-            "https://cdn.jsdelivr.net/gh/gn-math/assets/zones.json"
+            "https://cdn.jsdelivr.net/gh/freebuisness/assets@latest/zones.json",
+            "https://cdn.jsdelivr.net/gh/sealiee11/gnmathstuff@main/zones.json"
         ];
-        let zonesURL = zonesurls[Math.floor(Math.random() * zonesurls.length)];
-        const coverURL = "https://cdn.jsdelivr.net/gh/gn-math/covers@main";
-        const htmlURL = "https://cdn.jsdelivr.net/gh/gn-math/html@main";
+        let zonesURL = zonesurls[0];
+        const coverURL = "https://cdn.jsdelivr.net/gh/freebuisness/covers@main";
+        let htmlURL = "https://cdn.jsdelivr.net/gh/freebuisness/html@main";
+        fetch("https://api.github.com/repos/freebuisness/html/commits?per_page=1&t=" + Date.now())
+            .then(r => r.json())
+            .then(j => { if (j[0] && j[0].sha) htmlURL = `https://cdn.jsdelivr.net/gh/freebuisness/html@${j[0].sha}`; })
+            .catch(() => {});
 
         let zones = [];
         let gamesFavorites = JSON.parse(localStorage.getItem('gn-favs') || '[]');
@@ -7289,13 +7291,13 @@
             try {
                 let sharesponse;
                 try {
-                    sharesponse = await fetch("https://api.github.com/repos/gn-math/assets/commits?t=" + Date.now());
+                    sharesponse = await fetch("https://api.github.com/repos/freebuisness/assets/commits?t=" + Date.now());
                 } catch (error) {}
                 if (sharesponse && sharesponse.status === 200) {
                     try {
                         let shajson = await sharesponse.json();
                         let sha = shajson[0]['sha'];
-                        if (sha) zonesURL = `https://cdn.jsdelivr.net/gh/gn-math/assets@${sha}/zones.json`;
+                        if (sha) zonesURL = `https://cdn.jsdelivr.net/gh/freebuisness/assets@${sha}/zones.json`;
                     } catch (error) {}
                 }
                 const response = await fetch(zonesURL + "?t=" + Date.now());
